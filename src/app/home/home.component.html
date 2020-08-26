@@ -1,0 +1,140 @@
+<div class="container">
+    <div class="row text-center">
+        <div class="col-md-12">
+            <h1>COATATION GENERATOR</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="container fillDetailsArea">
+                <div class="row text-center">
+                    <div class="col-md-2">
+                        <label>Material</label>
+                        <select class="custom-select" [(ngModel)]="material">
+                            <option *ngFor = "let data of materials; let i = index">{{ data }}</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <label>Standard</label>
+                        <select class="custom-select" *ngIf="material === 'A2' || material === ''" [(ngModel)]="standard">
+                            <option *ngFor = "let data of standards1; let i = index">{{ data }}</option>                            
+                        </select>
+                        <select class="custom-select" *ngIf="material === 'A3'" [(ngModel)]="standard">
+                            <option  *ngFor = "let data of standards2; let i = index">{{ data }}</option>                            
+                        </select>
+                        <select class="custom-select" *ngIf="material === 'A4'" [(ngModel)]="standard">
+                            <option *ngFor = "let data of standards3; let i = index">{{ data }}</option>                            
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <label>Group</label>
+                        <select class="custom-select" *ngIf="standard === 'DIN' || standard === 'NEF' || standard === ''" [(ngModel)]="group">
+                            <option *ngFor = "let data of groups1; let i = index">{{ data }}</option>
+                        </select>
+                        <select class="custom-select" *ngIf="standard === 'ABC' || standard === 'DEF' || standard === 'PQR' || standard === 'XYZ'" [(ngModel)]="group">
+                            <option *ngFor = "let data of groups2; let i = index">{{ data }}</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <label>Size</label>
+                        <select class="custom-select" [(ngModel)]="size">
+                            <option *ngFor = "let data of sizes; let i = index">{{ data }}</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <label>Quantity</label>
+                        <input class="inputBox" type="text" [(ngModel)]="quantity" placeholder="Qunatity" />
+                    </div>
+                    <div class="col-md-2">
+                        <label>RM Rate</label>
+                        <input class="inputBox" type="text" [(ngModel)]="rmRate" placeholder="RM Rate" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2">
+                        <label>Scrap Rate</label>
+                        <input class="inputBox" type="text" [(ngModel)]="scrapRate" placeholder="Scrap Rate" />
+                    </div>
+                    <div class="col-md-2">
+                        <label>Production Rate</label>
+                        <input class="inputBox" type="text" [(ngModel)]="productionRate" placeholder="Production Rate" />
+                    </div>
+                    <div class="col-md-2">
+                        <label>Euro Rate</label>
+                        <input class="inputBox" type="text" [(ngModel)]="euroRate" placeholder="Euro Rate" />
+                    </div>
+                    <div class="col-md-2 text-center"> 
+                        <label>Clear all data</label>
+                        <input type="reset" class="btn btn-danger" (click)="Reset()" value="Reset" /> 
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 text-center" *ngIf="selectedIndex === null">
+                        <button class="btn btn-success addButton" (click)="AddDetail()">Add</button>
+                    </div>
+                    <div class="col-md-6 text-center" *ngIf="selectedIndex !== null">
+                        <button class="btn btn-warning editButton" (click)="EditDetail()">Edit</button>
+                    </div>
+                    <div class="col-md-6 text-center" *ngIf="selectedIndex !== null">
+                        <button class="btn btn-info editButton" (click)="Cancel()">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table-bordered table-responsive">
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th>Material</th>
+                    <th>Standard</th>
+                    <th>Group</th>
+                    <th>Size</th>
+                    <th>Washer Percentage</th>
+                    <th>Thickness Range</th>
+                    <th>Weight</th>
+                    <th>Quantity</th>
+                    <th>Total Washer Weight</th>
+                    <th>Total RM</th>
+                    <th>RM Rate</th>
+                    <th>Total RM Value</th>
+                    <th>Scrap Rate</th>
+                    <th>Total Scrap Value</th>
+                    <th>Production Rate</th>
+                    <th>Production Value</th>
+                    <th>Net Price Per 100</th>                    
+                    <th>Euro Rate</th>
+                    <th>Euro Value Per 100</th>
+                </tr>
+                <tr *ngFor = "let data of dataArray; let i = index">
+                    <td><input type="button" class="btn btn-danger" (click)="DeleteDetail(i)" value="Remove" /></td>
+                    <td><input type="button" class="btn btn-warning" (click)="SelectDetail(i)" value="Edit" /></td>
+                    <td>{{ data.material }}</td>
+                    <td>{{ data.standard }}</td>
+                    <td>{{ data.group }}</td>
+                    <td>{{ data.size }}</td>
+                    <td>{{ data.washerPercentage }}</td>
+                    <td>{{ data.thicknessRange }}</td>
+                    <td>{{ data.weight }}</td>
+                    <td>{{ data.quantity }}</td>
+                    <td>{{ data.totalWasherWeight }}</td>
+                    <td>{{ data.totalRm }}</td>
+                    <td>{{ data.rmRate }}</td>
+                    <td>{{ data.totalRmValue }}</td>
+                    <td>{{ data.scrapRate }}</td>
+                    <td>{{ data.totalScrapValue }}</td>
+                    <td>{{ data.productionRate }}</td>
+                    <td>{{ data.productionValue }}</td>
+                    <td>{{ data.netPricePerHundered }}</td>
+                    <td>{{ data.euroRate }}</td>
+                    <td>{{ data.euroRatePerHundered }}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

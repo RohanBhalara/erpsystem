@@ -1,0 +1,9 @@
+.page-footer{
+    position: fixed;
+    background-color: black;
+    padding: 20px;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    color: white;
+}

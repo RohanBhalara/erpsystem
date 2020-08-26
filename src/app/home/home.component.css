@@ -1,0 +1,19 @@
+.row{
+    padding: 10px;
+}
+.fillDetailsArea{
+    background-color: rgb(168, 187, 250);
+}
+.inputBox{
+    width: 100%;
+}
+.addButton, .editButton{
+    width: 30%;
+}
+.cancelButton{
+    width: 10%;
+}
+th, td{
+    text-align: center;
+    min-width: 100px;
+}
